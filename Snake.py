@@ -34,6 +34,7 @@ class Snakes:
         self.snake_segment.append(snakes)
 
     def extend(self):
+        """ADD Segment"""
         self.add_segment(self.snake_segment[-1].position())
 
     def move(self):
@@ -65,16 +66,8 @@ class Snakes:
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
 
-    # def tail_is_contact(self):
-    #     """Return Bool Value"""
-    #     self.tail = self.snake_segment[2:]
-    #     for segment in self.tail:
-    #         if self.head.distance(segment) < PIXEL:
-    #             return False
-    #         else:
-    #             return True
-
     def reset(self):
+        """Reset Snake"""
         for seg in self.snake_segment:
             seg.goto(1000, 1000)
         self.__init__()

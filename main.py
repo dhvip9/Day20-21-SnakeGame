@@ -21,7 +21,6 @@ screen.onkey(snakes.left, "Left")
 screen.onkey(snakes.up, "Up")
 screen.onkey(snakes.down, "Down")
 
-
 is_going = True
 while is_going:
     screen.update()
