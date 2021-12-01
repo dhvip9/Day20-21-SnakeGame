@@ -27,14 +27,22 @@ while is_going:
     screen.update()
     time.sleep(0.1)
     snake_position = snakes.move()
-    is_going = snakes.tail_is_contact()
-    eat = snake_food.is_food_eat(snakes.head)
-    if eat:
-        snakes.extend()
-        scoreboard.clear()
-        scoreboard.increase_score()
-    is_going = snakes.snake_boundary(snake_position)
 
+    # For contacting Tail
+    for segment in snakes.tail:
+        if snakes.head.distance(segment) < 10:
+            scoreboard.reset()
+            snakes.reset()
+
+    if snake_food.is_food_eat(snakes.head):
+        snakes.extend()
+        scoreboard.increase_score()
+
+    if not snakes.snake_boundary(snake_position):
+        scoreboard.reset()
+        snakes.reset()
+
+    snakes.tail = snakes.snake_segment[2:]
 
 scoreboard.game_over()
 

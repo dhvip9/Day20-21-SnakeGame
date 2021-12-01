@@ -17,7 +17,7 @@ class Snakes:
         self.snake_body()
         self.head = self.snake_segment[0]
         self.head.shape("triangle")
-        self.tail = self.snake_segment[2:]
+        self.tail = []
 
     def snake_body(self):
         """Return Snake Segment object"""
@@ -27,7 +27,7 @@ class Snakes:
     def add_segment(self, position):
         """add segment"""
         snakes = turtle.Turtle("square")
-        snakes.color("white")
+        snakes.color("red")
         snakes.turtlesize(stretch_len=0.5, stretch_wid=0.5)
         snakes.penup()
         snakes.goto(position)
@@ -65,18 +65,24 @@ class Snakes:
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
 
-    def tail_is_contact(self):
-        """Return Bool Value"""
-        for segment in self.tail:
-            if self.head.distance(segment) < PIXEL:
-                return False
-            else:
-                return True
+    # def tail_is_contact(self):
+    #     """Return Bool Value"""
+    #     self.tail = self.snake_segment[2:]
+    #     for segment in self.tail:
+    #         if self.head.distance(segment) < PIXEL:
+    #             return False
+    #         else:
+    #             return True
+
+    def reset(self):
+        for seg in self.snake_segment:
+            seg.goto(1000, 1000)
+        self.__init__()
 
     @staticmethod
     def snake_boundary(position):
         """Return Bool value"""
-        if position[0] > 280 or position[0] < -280 or position[1] > 270 or position[1] < -280:
+        if position[0] > 290 or position[0] < -290 or position[1] > 280 or position[1] < -290:
             return False
         else:
             return True
